@@ -1,70 +1,60 @@
-class Mammal  {
-    constructor (name, gender, legs, saying) {
-        this.species = 'mammal';
+class Animal {
+    constructor(species, name, saying, gender) {
+        this.species = species;
         this.name = name;
         this.gender = gender;
-        this.legs = legs;
         this.saying = saying;
+        this.legs = 4;
     }
 
     tellAboutClass() {
-        return `${this.saying} My name is ${this.name}. I'm ${this.species} ${this.gender}. I have ${this.legs} legs.`;
+        return `${this.saying} My name is ${this.name} I am ${this.species} ${this.gender}. I have ${this.legs} legs`;
     }
 }
 
-class Human extends Mammal{
-    constructor (name, gender, saying) {
-        super(name, gender);
+class Cat extends Animal {
+    constructor(name, saying, gender) {
+        super('cat', name, saying, gender);
+    }
+}
+
+class Dog extends Animal {
+    constructor(name, saying, gender) {
+        super('dog', name, saying, gender);
+    }
+}
+
+class Human {
+    constructor(name, saying, gender) {
         this.species = 'human';
-        this.legs = 2;
-        this.hands = 2;
+        this.name = name;
         this.saying = saying;
+        this.hands = 2;
+        this.legs = 2;
+        this.gender = gender;
     }
 
     tellAboutClass() {
-        return `${super.tellAboutClass()} I have ${this.hands} hands.`;
+        return `${this.saying} My name is ${this.name} I am ${this.species} ${this.gender}. I have ${this.hands} hands and ${this.legs} legs`;
     }
 }
 
 class Man extends Human {
-    constructor (name, saying = 'Hello.') {
-        super(name, saying);
-        this.gender = 'male';
-        this.saying = saying;
+    constructor(name, saying) {
+        super(name, saying, 'male');
     }
 }
 
 class Woman extends Human {
-    constructor (name, saying = 'Hi') {
-        super(name, saying);
-        this.gender = 'female';
-        this.saying = saying;
+    constructor(name, saying) {
+        super(name, saying, 'female');
     }
 }
 
-class Dog extends Mammal {
-    constructor (name, gender, saying = 'woof') {
-        super(name, gender);
-        this.species = 'dog';
-        this.legs = 4;
-        this.saying = saying;
-    }
-}
+const john = new Man('John', 'Hi');
+const mary = new Woman('Mary', 'Hello');
+const boris = new Dog('Boris', 'Woof', 'male');
+const sam = new Cat('Sam', 'Meoow', 'female');
 
-class Cat extends Mammal {
-    constructor (name, gender, saying = 'Meow') {
-        super(name, gender);
-        this.species = 'cat';
-        this.legs = 4;
-        this.saying = saying;
-    }
-}
-
-const john = new Man('John');
-const cassy = new Woman('Cassy', 'Hi!');
-const ralph = new Dog('Ralph', 'male', 'Woooooof');
-const aimi = new Cat('Aimi', 'female', 'Meeeeeeoooooooow');
-
-const inhabitants = [john, cassy, ralph, aimi];
-
+const inhabitants = [john, mary, boris, sam];
 inhabitants.forEach( item => print(item.tellAboutClass()));
